@@ -11,11 +11,11 @@ import java.awt.Graphics;
 
 public class Shape
 {
-	protected int xPos;
-	protected int yPos;
-	protected int width;
-	protected int height;
-	protected Color[] color;
+	public int xPos;
+	public int yPos;
+	public int width;
+	public int height;
+	public Color[] color;
 
    public Shape(int x, int y, int wid, int ht, Color[] col)
    {

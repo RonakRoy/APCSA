@@ -14,7 +14,7 @@ public class CustomShape extends Shape {
 	@Override
 	public void draw(Graphics window) {
 		super.draw(window);
-		
+				
 		int[] x = new int[6];
 		x[0] = xPos;
 		x[1] = xPos + width / 2;
@@ -31,8 +31,14 @@ public class CustomShape extends Shape {
 		y[4] = yPos + 2 * height / 3;
 		y[5] = yPos + height / 3;
 		
+		
+		window.setColor(color[0]);
 		window.fillPolygon(x, y, 6);
 		
-	    window.fillRect(xPos, yPos, width, height);
+		window.setColor(color[1]);
+		window.fillOval(xPos - width / 2 + width / 6, yPos + height / 6, 2 * width / 3, 2 * height / 3);
+	
+		window.setColor(color[2]);
+		window.drawRoundRect(xPos - width / 2, yPos, width, height, 80, 80);
 	}
 }
