@@ -9,6 +9,10 @@ public class Fahrenheit
 {
 	private double fahrenheit;
 
+	public Fahrenheit() {
+		setFahrenheit(0);
+	}
+	
 	public Fahrenheit(double f) {
 		setFahrenheit(f);
 	}

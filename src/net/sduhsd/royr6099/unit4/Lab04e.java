@@ -29,5 +29,7 @@ public class Lab04e
 		out.println("looking for COMP SCI "+demo.findSubString("COMP SCI"));
 		out.println("looking for SCIENCE "+demo.findSubString("SCIENCE"));
 		out.println(demo);
+
+		System.out.println((int)'a');
 	}
 }

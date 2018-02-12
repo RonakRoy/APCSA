@@ -10,6 +10,10 @@ public class Circle
 	private double radius;
 	private double area;
 	
+	public Circle() {
+		setRadius(0);
+	}
+	
 	public Circle(double radius) {
 		setRadius(radius);
 	}
