@@ -1,25 +1,39 @@
 package net.sduhsd.royr6099.scratch;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class workystuff {
 	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		String ssn = "";
+		int num = 23325;
 		
-		while (true) {
-			System.out.println("Enter a social security number (DDD-DD-DDDD): ");
-			
-			String userSSN = input.next();
-			
-			if (checkSSN(userSSN)) {
-				ssn = userSSN;
-				break;
-			}
-			System.out.println("\"" + userSSN + "\" is not a valid SSN.\n");
+		int buffer = 1;
+		int counter = 0;
+		
+		while (buffer <= num) {
+			buffer *= 10;
+			counter++;
 		}
 		
-		System.out.println("\"" + ssn + "\" is a valid SSN.\n");
+		System.out.println(counter);
+	}
+	
+	public static String generatePlate() {
+		String plate = "";
+		
+		Random rand = new Random();
+		
+		for (int i = 0; i < 3; i++) {
+			char c = (char) (rand.nextInt(26) + 65);
+			plate += c;
+		}
+		
+		for (int i = 0; i < 4; i++) {
+			char c = (char) (rand.nextInt(10) + 48);
+			plate += c;
+		}
+		
+		return plate;
 	}
 	
 	public static boolean checkSSN(String input) {
