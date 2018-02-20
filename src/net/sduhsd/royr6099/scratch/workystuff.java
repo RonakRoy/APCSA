@@ -5,17 +5,12 @@ import java.util.Scanner;
 
 public class workystuff {
 	public static void main(String[] args) {
-		int num = 23325;
+		Scanner scan = new Scanner(System.in);
 		
-		int buffer = 1;
-		int counter = 0;
+		System.out.println("Enter a decimal number between 0 and 255");
+		int num = scan.nextInt();
 		
-		while (buffer <= num) {
-			buffer *= 10;
-			counter++;
-		}
-		
-		System.out.println(counter);
+		System.out.println(decimalToBinary(num));
 	}
 	
 	public static String generatePlate() {
@@ -69,6 +64,34 @@ public class workystuff {
 		}
 		
 		return false;
+	}
+	
+	public static String decimalToBinary(int decimal) {
+		String result = "";
+		
+		if (decimal > 255) {
+			return "OVERFLOW";
+		}
+		else if (decimal < 0) {
+			return "UNDERFLOW";
+		}
+		
+		int powerOf2 = 128;
+		
+		for (int i = 0; i < 8; i++) {
+			if (powerOf2 <= decimal) {
+				result += "1";
+				decimal -= powerOf2;
+			}
+			else {
+				result += "0";
+			}
+			
+			powerOf2 /= 2;
+		}
+		
+		
+		return result;
 	}
 
 }
