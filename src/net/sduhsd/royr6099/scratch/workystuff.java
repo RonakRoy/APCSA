@@ -7,10 +7,32 @@ public class workystuff {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		
-		System.out.println("Enter a decimal number between 0 and 255");
-		int num = scan.nextInt();
+		System.out.print("Enter a number: ");
+		int number = scan.nextInt();
+				
+		String response = "not ";
+		if (isPalindrome(number)) {
+			response = "";
+		}
 		
-		System.out.println(decimalToBinary(num));
+		System.out.println(number + " is " + response + "a palindrome.");
+	}
+	
+	public static int reverse(int number) {
+		int result = 0;
+		
+		while (number >= 1) {
+			result *= 10;
+			result += number % 10;
+			
+			number /= 10;
+		}
+		
+		return result;
+	}
+	
+	public static boolean isPalindrome(int number) {
+		return number == reverse(number);
 	}
 	
 	public static String generatePlate() {
