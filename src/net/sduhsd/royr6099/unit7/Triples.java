@@ -8,30 +8,25 @@ package net.sduhsd.royr6099.unit7;
 
 import static java.lang.System.*;
 
-public class Triples
-{
-   private int number;
+public class Triples {
+	private int number;
 
-	public Triples()
-	{
+	public Triples() {
 		this(0);
 	}
 
-	public Triples(int num)
-	{
+	public Triples(int num) {
 		setNum(num);
 	}
 
-	public void setNum(int num)
-	{
+	public void setNum(int num) {
 		this.number = num;
 	}
-	
-	private int greatestCommonFactor(int a, int b, int c)
-	{
+
+	private int greatestCommonFactor(int a, int b, int c) {
 		int min = Math.min(a, Math.min(b, c));
 		int max_factor = 1;
-		
+
 		for (int i = 1; i <= min; i++) {
 			if (a % i == 0 && b % i == 0 && c % i == 0) {
 				max_factor = i;
@@ -41,10 +36,9 @@ public class Triples
 		return max_factor;
 	}
 
-	public String toString()
-	{
+	public String toString() {
 		String output = "";
-		
+
 		for (int a = 1; a <= number; a++) {
 			for (int b = a + 1; b <= number; b++) {
 				for (int c = b + 1; c <= number; c++) {
@@ -54,7 +48,7 @@ public class Triples
 				}
 			}
 		}
-		
+
 		return output + "\n";
 	}
 }

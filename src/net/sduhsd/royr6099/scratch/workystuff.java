@@ -5,19 +5,36 @@ import java.util.Scanner;
 
 public class workystuff {
 	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
+		int min = 0;
+		int max = 9;
 		
-		System.out.print("Enter a number: ");
-		int number = scan.nextInt();
-				
-		String response = "not ";
-		if (isPalindrome(number)) {
-			response = "";
+		int number = 100;
+		
+		int[] results = generateRandom(number, min, max);
+		printResults(results, min, max);
+	}
+
+	public static void printResults(int[] counts, int min, int max) {		
+		for (int i = min; i <= max; i++) {
+			System.out.println(i + " was generated " + counts[i - min] + " times.");
+		}
+	}
+
+	public static int[] generateRandom(int number, int min, int max) {
+		int[] counts = new int[max - min + 1];
+		
+		Random r = new Random();
+		
+		for (int i = 0; i < number; i++) {
+			int n = r.nextInt(max + 1) + min;
+			
+			counts[n - min]++;
 		}
 		
-		System.out.println(number + " is " + response + "a palindrome.");
+		return counts;
 	}
-	
+
+
 	public static int reverse(int number) {
 		int result = 0;
 		
