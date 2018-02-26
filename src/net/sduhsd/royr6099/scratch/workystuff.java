@@ -5,13 +5,13 @@ import java.util.Scanner;
 
 public class workystuff {
 	public static void main(String[] args) {
-		int min = 0;
-		int max = 9;
+		char[] arr1 = {'A', 'B', '1', 'D', 'E', 'F', 'G'};
+		MyString1 string1 = new MyString1(arr1);
 		
-		int number = 100;
+		char[] arr2 = {'A', 'B', '1', 'D', 'E', 'F', 'G'};
+		MyString1 string2 = new MyString1(arr2);
 		
-		int[] results = generateRandom(number, min, max);
-		printResults(results, min, max);
+		System.out.println(MyString1.valueOf(14872).toNormalString());
 	}
 
 	public static void printResults(int[] counts, int min, int max) {		
