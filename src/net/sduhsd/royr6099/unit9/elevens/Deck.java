@@ -1,6 +1,7 @@
 package net.sduhsd.royr6099.unit9.elevens;
 
 import java.util.List;
+import java.util.Random;
 import java.util.ArrayList;
 
 /**
@@ -35,12 +36,17 @@ public class Deck {
 	 * @param values is an array containing all of the card point values.
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
-		size = ranks.length;
+		int rank_count = ranks.length;
+		int suit_count = suits.length;
+		
+		size = rank_count * suit_count;
+		
 		cards = new Card[size];
 		
-		for (String suit : suits) {
-			for (int i = 0; i < size; i++) {
-				cards[i] = new Card(ranks[i], suit, values[i]);
+		for (int j = 0; j < suits.length; j++) {
+			String suit = suits[j];
+			for (int i = 0; i < rank_count; i++) {
+				cards[rank_count * j + i] = new Card(ranks[i], suit, values[i]);
 			}
 		}
 		
@@ -69,7 +75,15 @@ public class Deck {
 	 * and reset the size to represent the entire deck.
 	 */
 	public void shuffle() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+		int size = cards.length;
+		Random rand = new Random();
+		
+		for (int k = size - 1; k > 0; k--) {
+			int r = rand.nextInt(k + 1);
+			Card buffer = cards[k];
+			cards[k] = cards[r];
+			cards[r] = buffer;
+		}
 	}
 
 	/**
@@ -96,10 +110,8 @@ public class Deck {
 		String rtn = "size = " + size + "\nUndealt cards: \n";
 
 
-		//Unit 9 - modify to work with Arrays
-		/*
 		for (int k = size - 1; k >= 0; k--) {
-			rtn = rtn + cards.get(k);
+			rtn = rtn + cards[k];
 			if (k != 0) {
 				rtn = rtn + ", ";
 			}
@@ -110,17 +122,16 @@ public class Deck {
 		}
 
 		rtn = rtn + "\nDealt cards: \n";
-		for (int k = cards.size() - 1; k >= size; k--) {
-			rtn = rtn + cards.get(k);
+		for (int k = cards.length - 1; k >= size; k--) {
+			rtn = rtn + cards[k];
 			if (k != size) {
 				rtn = rtn + ", ";
 			}
-			if ((k - cards.size()) % 2 == 0) {
+			if ((k - cards.length) % 2 == 0) {
 				// Insert carriage returns so entire deck is visible on console.
 				rtn = rtn + "\n";
 			}
 		}
-		*/
 
 		rtn = rtn + "\n";
 		return rtn;

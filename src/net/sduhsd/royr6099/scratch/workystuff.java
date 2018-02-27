@@ -1,17 +1,22 @@
 package net.sduhsd.royr6099.scratch;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
 public class workystuff {
 	public static void main(String[] args) {
-		char[] arr1 = {'A', 'B', '1', 'D', 'E', 'F', 'G'};
-		MyString1 string1 = new MyString1(arr1);
+		Scanner scan = new Scanner(System.in);
 		
-		char[] arr2 = {'A', 'B', '1', 'D', 'E', 'F', 'G'};
-		MyString1 string2 = new MyString1(arr2);
+		System.out.print("Enter ten numbers: ");
 		
-		System.out.println(MyString1.valueOf(14872).toNormalString());
+		int[] original = new int[10];
+		for (int i = 0; i < 10; i++) {
+			original[i] = scan.nextInt();
+		}
+		
+		int[] distinct = eliminateDuplicates(original);
+		System.out.println("The distinct numbers are: " + Arrays.toString(distinct));
 	}
 
 	public static void printResults(int[] counts, int min, int max) {		
@@ -133,4 +138,32 @@ public class workystuff {
 		return result;
 	}
 
+	public static int[] eliminateDuplicates(int[] list) {
+		int[] result = new int[0];
+		
+		for (int element : list) {
+			boolean exists = false;
+			
+			for (int existing : result) {
+				if (existing == element) {
+					exists = true;
+					break;
+				}
+			}
+			
+			if (!exists) {
+				int[] added = new int[result.length + 1];
+				
+				for (int i = 0; i < result.length; i++) {
+					added[i] = result[i];
+				}
+				added[result.length] = element;
+				
+				result = added;
+			}
+		}
+		
+		return result;
+	}
+	
 }
