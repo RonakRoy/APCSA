@@ -1,22 +1,26 @@
 package net.sduhsd.royr6099.scratch;
 
-import java.util.Arrays;
 import java.util.Random;
-import java.util.Scanner;
 
 public class workystuff {
 	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
+		MyInteger my1 = new MyInteger(11);
+		System.out.println("Even: " + my1.isEven());
+		System.out.println("Odd: " + my1.isOdd());
+		System.out.println("Prime: " + my1.isPrime());
 		
-		System.out.print("Enter ten numbers: ");
+		System.out.println();
 		
-		int[] original = new int[10];
-		for (int i = 0; i < 10; i++) {
-			original[i] = scan.nextInt();
-		}
+		MyInteger my2 =  new MyInteger(11);
+		System.out.println("my1 == my2: " + my1.equals(my2));
+		System.out.println("my2 == 11: " + my2.equals(11));
 		
-		int[] distinct = eliminateDuplicates(original);
-		System.out.println("The distinct numbers are: " + Arrays.toString(distinct));
+		System.out.println();
+		
+		char[] digits = {'1', '3', '6', '8'};
+		String str = "29092";
+		System.out.println(MyInteger.parseInt(digits));
+		System.out.println(MyInteger.parseInt(str));
 	}
 
 	public static void printResults(int[] counts, int min, int max) {		

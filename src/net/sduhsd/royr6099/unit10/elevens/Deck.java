@@ -1,4 +1,4 @@
-package net.sduhsd.royr6099.unit9.elevens;
+package net.sduhsd.royr6099.unit10.elevens;
 
 import java.util.List;
 import java.util.Random;
@@ -14,10 +14,8 @@ public class Deck {
 	/**
 	 * cards contains all the cards in the deck.
 	 */
-	//private List<Card> cards;
+	private List<Card> cards;
 	
-	//Unit 9 - Array version of the Deck
-	private Card[] cards;
 
 	/**
 	 * size is the number of not-yet-dealt cards.
@@ -41,12 +39,11 @@ public class Deck {
 		
 		size = rank_count * suit_count;
 		
-		cards = new Card[size];
+		cards = new ArrayList<Card>();
 		
-		for (int j = 0; j < suits.length; j++) {
-			String suit = suits[j];
+		for (String suit : suits) {
 			for (int i = 0; i < rank_count; i++) {
-				cards[rank_count * j + i] = new Card(ranks[i], suit, values[i]);
+				cards.add(new Card(ranks[i], suit, values[i]));
 			}
 		}
 		
@@ -75,14 +72,14 @@ public class Deck {
 	 * and reset the size to represent the entire deck.
 	 */
 	public void shuffle() {
-		size = cards.length;
+		size = cards.size();
 		Random rand = new Random();
 		
 		for (int k = size - 1; k > 0; k--) {
 			int r = rand.nextInt(k + 1);
-			Card buffer = cards[k];
-			cards[k] = cards[r];
-			cards[r] = buffer;
+			Card buffer = cards.get(k);
+			cards.set(k, cards.get(r));
+			cards.set(r, buffer);
 		}
 	}
 
@@ -97,7 +94,7 @@ public class Deck {
 		}
 		else {
 			size--;
-			return cards[size];
+			return cards.get(size);
 		}
 	}
 
@@ -111,7 +108,7 @@ public class Deck {
 
 
 		for (int k = size - 1; k >= 0; k--) {
-			rtn = rtn + cards[k];
+			rtn = rtn + cards.get(k);
 			if (k != 0) {
 				rtn = rtn + ", ";
 			}
@@ -122,12 +119,12 @@ public class Deck {
 		}
 
 		rtn = rtn + "\nDealt cards: \n";
-		for (int k = cards.length - 1; k >= size; k--) {
-			rtn = rtn + cards[k];
+		for (int k = cards.size() - 1; k >= size; k--) {
+			rtn = rtn + cards.get(k);
 			if (k != size) {
 				rtn = rtn + ", ";
 			}
-			if ((k - cards.length) % 2 == 0) {
+			if ((k - cards.size()) % 2 == 0) {
 				// Insert carriage returns so entire deck is visible on console.
 				rtn = rtn + "\n";
 			}
