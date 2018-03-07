@@ -23,6 +23,8 @@ public class Deck {
 	 * The next card to be dealt is at size - 1.
 	 */
 	private int size;
+	
+	private Random rand;
 
 
 	/**
@@ -35,10 +37,9 @@ public class Deck {
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		int rank_count = ranks.length;
-		int suit_count = suits.length;
 		
-		size = rank_count * suit_count;
-		
+		rand = new Random();
+				
 		cards = new ArrayList<Card>();
 		
 		for (String suit : suits) {
@@ -46,7 +47,7 @@ public class Deck {
 				cards.add(new Card(ranks[i], suit, values[i]));
 			}
 		}
-		
+				
 		shuffle();
 	}
 
@@ -73,7 +74,6 @@ public class Deck {
 	 */
 	public void shuffle() {
 		size = cards.size();
-		Random rand = new Random();
 		
 		for (int k = size - 1; k > 0; k--) {
 			int r = rand.nextInt(k + 1);
@@ -105,7 +105,6 @@ public class Deck {
 	@Override
 	public String toString() {
 		String rtn = "size = " + size + "\nUndealt cards: \n";
-
 
 		for (int k = size - 1; k >= 0; k--) {
 			rtn = rtn + cards.get(k);

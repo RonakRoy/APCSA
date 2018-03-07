@@ -1,6 +1,7 @@
 package net.sduhsd.royr6099.unit10.elevens;
 
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class Activity3 {
@@ -17,12 +18,12 @@ public class Activity3 {
 		}
 	}
 	
-	public static boolean arePermutations(int[] one, int[] two) {
-		Arrays.sort(one);
-		Arrays.sort(two);
+	public static boolean arePermutations(List<Integer> one, List<Integer> two) {
+		Collections.sort(one);
+		Collections.sort(two);
 		
-		for (int i = 0; i < one.length; i++) {
-			if (one[i] != two[i]) return false;
+		for (int i = 0; i < one.size(); i++) {
+			if (one.get(i) != two.get(i)) return false;
 		}
 		
 		return true;
