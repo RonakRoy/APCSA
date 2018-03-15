@@ -1,4 +1,4 @@
-package net.sduhsd.royr6099.unit11.gradebook;
+package net.sduhsd.royr6099.unit11.gradebooklists;
 
 //© A+ Computer Science  -  www.apluscompsci.com
 //Name -
@@ -7,35 +7,46 @@ package net.sduhsd.royr6099.unit11.gradebook;
 //Lab  -
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 import static java.lang.System.*;
 import static java.util.Arrays.*;
 
+import java.util.ArrayList;
+
 public class Class
 {
 	private String name;
-	private Student[] studentList;
+	private List<Student> studentList;
 	
 	public Class()
 	{
 		name="";
-		studentList=new Student[0];
+		studentList = new ArrayList<Student>();
 	}
 	
 	public Class(String name, int stuCount)
 	{
 		this.name = name;
-		studentList = new Student[stuCount];
+		studentList = new ArrayList<Student>();
 	}
 	
 	public void addStudent(int stuNum, Student s)
 	{
-		studentList[stuNum] = s;
+		while (stuNum >= studentList.size()) {
+			studentList.add(null);
+		}
+		studentList.set(stuNum, s);
 	}
 	
 	public String getClassName()
 	{
 	   return name;	
+	}
+	
+	public void sort() {
+		Collections.sort(studentList);
 	}
 	
 	public double getClassAverage()
@@ -46,12 +57,12 @@ public class Class
 			classAverage += s.getAverage();
 		}
 
-		return classAverage / studentList.length;
+		return classAverage / studentList.size();
 	}
 	
 	public double getStudentAverage(int stuNum)
 	{
-		return studentList[stuNum].getAverage();
+		return studentList.get(stuNum).getAverage();
 	}
 
 	public double getStudentAverage(String stuName)
@@ -67,38 +78,17 @@ public class Class
 	
 	public String getStudentName(int stuNum)
 	{
-		return studentList[stuNum].getName();
+		return studentList.get(stuNum).getName();
 	}
 
 	public String getStudentWithHighestAverage()
 	{
-		double high = Double.MIN_VALUE;
-		String hName ="";
-
-		for (Student s : studentList) {
-			if (s.getAverage() > high) {
-				hName = s.getName();
-				high = s.getAverage();
-			}
-		}
-		
-		
-		return hName;
+		return Collections.max(studentList).getName();
 	}
 
 	public String getStudentWithLowestAverage()
 	{
-		double low = Double.MAX_VALUE;
-		String lName ="";		
-
-		for (Student s : studentList) {
-			if (s.getAverage() < low) {
-				lName = s.getName();
-				low = s.getAverage();
-			}
-		}
-
-		return lName;
+		return Collections.min(studentList).getName();
 	}
 	
 	public String getFailureList(double failingGrade)

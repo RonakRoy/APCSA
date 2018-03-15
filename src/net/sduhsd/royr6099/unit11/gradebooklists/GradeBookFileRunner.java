@@ -1,4 +1,4 @@
-package net.sduhsd.royr6099.unit11.gradebook;
+package net.sduhsd.royr6099.unit11.gradebooklists;
 
 //© A+ Computer Science  -  www.apluscompsci.com
 //Name -
@@ -7,38 +7,39 @@ package net.sduhsd.royr6099.unit11.gradebook;
 //Lab  -
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 import static java.lang.System.*;
 import static java.util.Arrays.*;
+import java.io.File;
 
-public class GradeBookRunner
+public class GradeBookFileRunner
 {
-   public static void main( String args[] )
+   public static void main( String args[] ) throws Exception
    {
-		out.println("Welcome to the Class Stats program!");
+		out.println("Welcome to the Class Stats program - with lists!");
 		
-		Scanner keyboard = new Scanner(System.in);
+		Scanner file = new Scanner(new File("gradebook.dat"));
 
-		System.out.print("What is the name of this class? ");
-		String className = keyboard.nextLine();
+		String className = file.nextLine();
 		
-		System.out.print("How many students are in this class? ");
-		int numStudents = keyboard.nextInt();
+		int numStudents = file.nextInt();
 		
 		Class c = new Class(className, numStudents);
 
-		keyboard.nextLine();
+		file.nextLine();
 		for (int i = 1; i <= numStudents; i++) {
-			System.out.print("Enter the name for student " + i + ": ");
-			String stuName = keyboard.nextLine();
 			
-			System.out.println("Enter the grades for " + stuName + ", using the format (x - grade grade ...)");
-			String gradeList = keyboard.nextLine();
+			String stuName = file.nextLine();
+			
+			String gradeList = file.nextLine();
 			
 			Student s = new Student(stuName, gradeList);
 			
 			c.addStudent(i - 1, s);
 		}
+		
+		c.sort();
 		
 		out.println(c);
 
@@ -47,6 +48,5 @@ public class GradeBookRunner
 		out.println("Lowest Average = " + c.getStudentWithLowestAverage());
 								
 		out.println(String.format("Class Average = %.2f",c.getClassAverage()));
-
 	}		
 }

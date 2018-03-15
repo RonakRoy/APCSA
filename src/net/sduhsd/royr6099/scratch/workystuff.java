@@ -1,26 +1,18 @@
 package net.sduhsd.royr6099.scratch;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class workystuff {
 	public static void main(String[] args) {
-		MyInteger my1 = new MyInteger(11);
-		System.out.println("Even: " + my1.isEven());
-		System.out.println("Odd: " + my1.isOdd());
-		System.out.println("Prime: " + my1.isPrime());
+		Number[] nums = {41,13,0,2,1,4,12};
 		
-		System.out.println();
+		List<Number> numList = Arrays.asList(nums);
 		
-		MyInteger my2 =  new MyInteger(11);
-		System.out.println("my1 == my2: " + my1.equals(my2));
-		System.out.println("my2 == 11: " + my2.equals(11));
-		
-		System.out.println();
-		
-		char[] digits = {'1', '3', '6', '8'};
-		String str = "29092";
-		System.out.println(MyInteger.parseInt(digits));
-		System.out.println(MyInteger.parseInt(str));
+		sort(numList);
+		System.out.println(numList);
 	}
 
 	public static void printResults(int[] counts, int min, int max) {		
@@ -168,6 +160,23 @@ public class workystuff {
 		}
 		
 		return result;
+	}
+	
+	public static void sort(List<Number> list) {
+		boolean sort_complete = false;
+		while (!sort_complete) {
+			sort_complete = true;
+			
+			for (int i = 0; i < list.size() - 1; i++) {
+				if (list.get(i).doubleValue() > list.get(i + 1).doubleValue()) {
+					sort_complete = false;
+					
+					Number buffer = list.get(i);
+					list.set(i, list.get(i + 1));
+					list.set(i+1, buffer);
+				}
+			}
+		}
 	}
 	
 }

@@ -1,4 +1,4 @@
-package net.sduhsd.royr6099.unit11.gradebook;
+package net.sduhsd.royr6099.unit11.gradebooklists;
 
 //© A+ Computer Science  -  www.apluscompsci.com
 //Name -
