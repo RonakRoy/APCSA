@@ -7,12 +7,11 @@ import java.util.Random;
 
 public class workystuff {
 	public static void main(String[] args) {
-		Number[] nums = {41,13,0,2,1,4,12};
-		
-		List<Number> numList = Arrays.asList(nums);
-		
-		sort(numList);
-		System.out.println(numList);
+		int factorial = 1;
+		for (int i = 1; i <= 10; i++) {
+			factorial *= i;
+		}
+		System.out.println(factorial);
 	}
 
 	public static void printResults(int[] counts, int min, int max) {		
@@ -179,4 +178,49 @@ public class workystuff {
 		}
 	}
 	
+	public static void searchRun() {
+		Random r = new Random();
+		int[] randomList = new int[100];
+		for (int i = 0; i < 100; i++) {
+			randomList[i] = r.nextInt(101);
+		}
+		
+		int numToFind = r.nextInt(101);
+		System.out.println("Searching for: " + numToFind);
+		
+		long start = System.nanoTime();
+		int linFound = -1;
+		for (int i = 0; i < 100; i++) {
+			if (randomList[i] == numToFind) {
+				linFound = i;
+				break;
+			}
+		}
+		long end = System.nanoTime();
+		System.out.println("Linear Search found at index " + linFound);
+		System.out.println("Linear Search took " + (end - start) + " ns.");
+		
+		
+		Arrays.sort(randomList);
+		
+		start = System.nanoTime();
+		int binFound = Arrays.binarySearch(randomList, numToFind);
+		
+		end = System.nanoTime();
+		System.out.println("Binary Search found at index " + binFound);
+		System.out.println("Binary Search took " + (end - start) + " ns.");
+	}
+	
+	public static int factorial(int n) {
+		return factorial(n, 1);
+	}
+	
+	public static int factorial(int n, int accum) {
+		if (n > 0) {
+			return factorial(n-1, accum * n);
+		}
+		else {
+			return accum;
+		}
+	}
 }
