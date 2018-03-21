@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class AtCounter {
 	private char[][] mat;
-	private int count;
+	private int r, c, count;
 
 	private void init() {
 		count = 0;
@@ -29,24 +29,32 @@ public class AtCounter {
 	public int countAts(int r, int c) {
 		init();
 		
-		countAtsSub(r, c);
+		this.r = r;
+		this.c = c;
+		
+		countAts(r, c, 0);
 		return count;
 	}
 	
-	private void countAtsSub(int r, int c) {
-		System.out.println(count);
-		if (inBounds(r, c) && mat[r][c] == '@') {
-			mat[r][c] = '+';
+	private void countAts(int r, int c, int stackPoint) {
+		//System.out.println("[" + (stackPoint) + "] " + r + " " + c);
+		if (inBounds(r, c)) {
+			//System.out.println(r + " " + c + ": " + mat[r][c]);
 			
-			count++;
+			if (mat[r][c] == '@') {
+				mat[r][c] = '+';
+				//System.out.println("\t" + r + " " + c + ": " + mat[r][c]);
 				
-			countAts(r = 1, c - 1);
-			countAts(r - 1, c + 1);
+				count++;
 				
-			countAts(r + 1, c - 1);
-			countAts(r + 1, c + 1);
-
+				countAts(r - 1, c, stackPoint + 1);
+				countAts(r + 1, c, stackPoint + 1);
+					
+				countAts(r, c - 1, stackPoint + 1);
+				countAts(r, c + 1, stackPoint + 1);
+			}
 		}
+		
 	}
 
 	public int getAtCount() {
@@ -54,7 +62,7 @@ public class AtCounter {
 	}
 
 	public String toString() {
-		return getAtCount() + " @s connected.";
+		return r + " " + c + " has " + getAtCount() + " @s connected.";
 	}
 	
 	private boolean inBounds(int r, int c) {

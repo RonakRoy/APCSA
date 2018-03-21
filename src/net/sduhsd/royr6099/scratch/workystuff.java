@@ -1,17 +1,21 @@
 package net.sduhsd.royr6099.scratch;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class workystuff {
 	public static void main(String[] args) {
-		int factorial = 1;
-		for (int i = 1; i <= 10; i++) {
-			factorial *= i;
+		int[] nums = new int[8];
+		
+		System.out.println("Input 8 integers.");
+		Scanner scan = new Scanner(System.in);
+		
+		for (int i = 0; i < 8; i++) {
+			nums[i] = scan.nextInt();
 		}
-		System.out.println(factorial);
+		
+		System.out.println("The largest integer is: " + getLargestInteger(nums));
+		
+		scan.close();
 	}
 
 	public static void printResults(int[] counts, int min, int max) {		
@@ -222,5 +226,15 @@ public class workystuff {
 		else {
 			return accum;
 		}
+	}
+	
+	public static int getLargestInteger(int[] array) {
+		return getLargestInteger(array, Integer.MIN_VALUE, 0);
+	}
+
+	private static int getLargestInteger(int[] array, int max, int i) {
+		if (i == array.length) return max;
+		
+		return getLargestInteger(array, Math.max(max, array[i]), i+1);
 	}
 }
