@@ -1,7 +1,5 @@
 package net.sduhsd.royr6099.unit14;
 
-import java.util.Arrays;
-
 public class AtCounter {
 	private char[][] mat;
 	private int r, c, count;

@@ -2,13 +2,14 @@ package net.sduhsd.royr6099.elevens710;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import net.sduhsd.royr6099.unit10.elevens.*;
 
 /**
  * The ElevensBoard class represents the board in a game of Elevens.
  */
-public class ElevensBoard {
+public class ElevensBoard  {
 
 	/**
 	 * The size (number of cards) on the board.
@@ -188,7 +189,15 @@ public class ElevensBoard {
 	 *         false otherwise.
 	 */
 	public boolean isLegal(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		if (selectedCards.size() == 2) {
+			return containsPairSum11(selectedCards);
+		}
+		
+		if (selectedCards.size() == 3) {
+			return containsJQK(selectedCards);
+		}
+		
+		return false;
 	}
 
 	/**
@@ -200,7 +209,14 @@ public class ElevensBoard {
 	 *         false otherwise.
 	 */
 	public boolean anotherPlayIsPossible() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		int[] all = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+		List<Integer> allCards = new ArrayList<Integer>();
+		
+		for (int i : all) {
+			allCards.add(i);
+		}
+		
+		return containsJQK(allCards) || containsPairSum11(allCards);
 	}
 
 
@@ -222,7 +238,15 @@ public class ElevensBoard {
 	 *              contain an 11-pair; false otherwise.
 	 */
 	private boolean containsPairSum11(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		for (int i1 : selectedCards) {
+			for (int i2: selectedCards) {
+				if (i1 != i2) {
+					if (cards[i1].pointValue() + cards[i2].pointValue() == 11) return true;
+				}
+			}
+		}
+		
+		return false;
 	}
 
 	/**
@@ -234,7 +258,19 @@ public class ElevensBoard {
 	 *              include a jack, a queen, and a king; false otherwise.
 	 */
 	private boolean containsJQK(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		boolean hasJ = false;
+		boolean hasQ = false;
+		boolean hasK = false;
+		
+		for (int i : selectedCards) {
+			Card c = cards[i];
+			
+			if (c.rank() == "jack") hasJ = true;
+			if (c.rank() == "queen") hasQ = true;
+			if (c.rank() == "king") hasK = true;
+		}
+		
+		return hasJ && hasQ && hasK;
 	}
 	
 	public static void printCards(ElevensBoard board) {

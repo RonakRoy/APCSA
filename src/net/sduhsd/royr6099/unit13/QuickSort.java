@@ -1,6 +1,5 @@
 package net.sduhsd.royr6099.unit13;
 
-import static java.lang.System.*;
 import java.util.Arrays;
 
 public class QuickSort
@@ -19,11 +18,9 @@ public class QuickSort
 		if (low >= high) return;
 		System.out.println("pass " + numberPasses++ + ": " + Arrays.toString(list));
 		
-		
 		int split = partition(list, low, high);
 		quickSort(list, low, split);
 		quickSort(list, split+1, high);
-		
 	}
 
 

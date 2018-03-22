@@ -48,8 +48,6 @@ public class FancyWords
 			output += "\n";
 		}
 
-
-
 		return output+"\n\n";
 	}
 }

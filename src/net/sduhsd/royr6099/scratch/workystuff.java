@@ -4,18 +4,7 @@ import java.util.*;
 
 public class workystuff {
 	public static void main(String[] args) {
-		int[] nums = new int[8];
-		
-		System.out.println("Input 8 integers.");
-		Scanner scan = new Scanner(System.in);
-		
-		for (int i = 0; i < 8; i++) {
-			nums[i] = scan.nextInt();
-		}
-		
-		System.out.println("The largest integer is: " + getLargestInteger(nums));
-		
-		scan.close();
+		matrixMagic();
 	}
 
 	public static void printResults(int[] counts, int min, int max) {		
@@ -236,5 +225,61 @@ public class workystuff {
 		if (i == array.length) return max;
 		
 		return getLargestInteger(array, Math.max(max, array[i]), i+1);
+	}
+	
+	public static void matrixMagic() {
+		int[][] mat = new int[6][6];
+		Random rand = new Random();
+		
+		for (int r = 0; r < 6; r++) {
+			for (int c = 0; c < 6; c++) {
+				mat[r][c] = rand.nextInt(2);
+				
+				System.out.print(mat[r][c] + " ");
+			}
+			System.out.println();
+		}
+		
+		System.out.println();
+		
+		for (int r = 0; r < 6; r++) {
+			int row_sum = 0;
+			
+			for (int c = 0; c < 6; c++) {
+				row_sum += mat[r][c];
+			}
+			
+			System.out.print("Row " + r + " has an ");
+			
+			if (row_sum % 2 == 0) {
+				System.out.print("even");
+			}
+			else {
+				System.out.print("odd");
+			}
+			
+			System.out.println(" number of ones.");
+		}
+		
+		System.out.println();
+		
+		for (int c = 0; c < 6; c++) {
+			int col_sum = 0;
+			
+			for (int r = 0; r < 6; r++) {
+				col_sum += mat[r][c];
+			}
+			
+			System.out.print("Column " + c + " has an ");
+			
+			if (col_sum % 2 == 0) {
+				System.out.print("even");
+			}
+			else {
+				System.out.print("odd");
+			}
+			
+			System.out.println(" number of ones.");
+		}
 	}
 }

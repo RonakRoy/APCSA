@@ -2,10 +2,11 @@ package net.sduhsd.royr6099.unit13;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 class InsertionSort
 {
-	private ArrayList<String> list;
+	private List<String> list;
 
 	public InsertionSort()
 	{

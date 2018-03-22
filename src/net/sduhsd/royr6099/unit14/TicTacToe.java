@@ -1,7 +1,5 @@
 package net.sduhsd.royr6099.unit14;
 
-import java.util.Scanner;
-
 public class TicTacToe
 {
 	private char[][] charMat;

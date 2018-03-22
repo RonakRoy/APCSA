@@ -1,7 +1,5 @@
 package net.sduhsd.royr6099.unit14;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Maze
