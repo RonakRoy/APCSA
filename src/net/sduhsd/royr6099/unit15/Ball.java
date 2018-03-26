@@ -3,14 +3,12 @@ package net.sduhsd.royr6099.unit15;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Ball extends Block {
+public class Ball extends Block implements Collidable {
 	private int xSpeed;
 	private int ySpeed;
 
 	public Ball() {
-		super(200, 200);
-		xSpeed = 3;
-		ySpeed = 1;
+		this(200, 200);
 	}
 	
 	public Ball(int x, int y) {
@@ -74,5 +72,53 @@ public class Ball extends Block {
 
 	public String toString() {
 		return super.toString() + "  " + xSpeed + " " + ySpeed;
+	}
+	
+	private boolean isInXRange(Block other) {
+		return getX() >= other.getX() && getX() + this.getWidth() <= other.getX() + other.getWidth();
+	}
+	
+	private boolean isInYRange(Block other) {
+		return getY() >= other.getY() && getY() + this.getHeight() <= other.getY() + other.getHeight();
+	}
+
+	@Override
+	public boolean didCollideLeft(Object obj) {
+		Block other = (Block) obj;
+		if (other == null) return false;
+				
+		return isInYRange(other)
+				&& getX() + getWidth() > other.getX()
+				&& getX() <= other.getX() + other.getWidth();
+	}
+
+	@Override
+	public boolean didCollideRight(Object obj) {
+		Block other = (Block) obj;
+		if (other == null) return false;
+		
+		return isInYRange(other)
+				&& getX() < other.getX() + other.getWidth()
+				&& getX() + getWidth() >= other.getX();
+	}
+
+	@Override
+	public boolean didCollideTop(Object obj) {
+		Block other = (Block) obj;
+		if (other == null) return false;
+		
+		return isInXRange(other) 
+				&& other.getY() > getY() + getHeight()
+				&& other.getY() + other.getHeight() <= getY();
+	}
+
+	@Override
+	public boolean didCollideBottom(Object obj) {
+		Block other = (Block) obj;
+		if (other == null) return false;
+		
+		return isInXRange(other) 
+				&& other.getY() >= getY() + getHeight()
+				&& other.getY() + other.getHeight() < getY();
 	}
 }

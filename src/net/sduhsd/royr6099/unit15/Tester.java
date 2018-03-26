@@ -15,11 +15,11 @@ public class Tester extends JFrame
 		
 		//getContentPane().add(new BlockTestTwo());		
 		
-		getContentPane().add(new BallTestTwo());		
+		//getContentPane().add(new BallTestTwo());		
 		
-		//PaddleTestTwo padTest = new PaddleTestTwo();
-		//((Component)padTest).setFocusable(true);			
-		//getContentPane().add(padTest);
+		PaddleTestTwo padTest = new PaddleTestTwo();
+		((Component)padTest).setFocusable(true);			
+		getContentPane().add(padTest);
 				
 		setVisible(true);
 	}
