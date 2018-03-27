@@ -1,6 +1,11 @@
 package net.sduhsd.royr6099.unit15;
 
 import javax.swing.JFrame;
+
+import net.sduhsd.royr6099.unit15.gameelements.InvisibleBall;
+import net.sduhsd.royr6099.unit15.games.InvisiblePong;
+import net.sduhsd.royr6099.unit15.games.SpeedUpPong;
+
 import java.awt.Component;
 
 public class Tester extends JFrame
@@ -13,13 +18,33 @@ public class Tester extends JFrame
 		super("PONG TESTER");
 		setSize(WIDTH,HEIGHT);
 		
-		//getContentPane().add(new BlockTestTwo());		
+		//getContentPane().add(new BlockTestTwo());
 		
 		//getContentPane().add(new BallTestTwo());		
 		
-		PaddleTestTwo padTest = new PaddleTestTwo();
-		((Component)padTest).setFocusable(true);			
-		getContentPane().add(padTest);
+//		Pong padTest = new Pong();
+//		((Component)padTest).setFocusable(true);			
+//		getContentPane().add(padTest);
+
+//		BlinkyPong blink = new BlinkyPong();
+//		((Component)blink).setFocusable(true);			
+//		getContentPane().add(blink);
+		
+//		SpeedUpPong speed = new SpeedUpPong();
+//		((Component)speed).setFocusable(true);			
+//		getContentPane().add(speed);
+		
+		InvisiblePong invisible = new InvisiblePong();
+		((Component)invisible).setFocusable(true);			
+		getContentPane().add(invisible);
+		
+//		BreakOut breakOutTest = new BreakOut();
+//		((Component)breakOutTest).setFocusable(true);			
+//		getContentPane().add(breakOutTest);
+		
+//		AirHockey hockey = new AirHockey();
+//		((Component)hockey).setFocusable(true);			
+//		getContentPane().add(hockey);
 				
 		setVisible(true);
 	}

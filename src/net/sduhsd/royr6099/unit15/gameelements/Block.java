@@ -1,4 +1,4 @@
-package net.sduhsd.royr6099.unit15;
+package net.sduhsd.royr6099.unit15.gameelements;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -84,6 +84,10 @@ public class Block implements Locatable {
 		window.fillRect(getX(), getY(), getWidth(), getHeight());
 	}
 
+	public void delete(Graphics window) {
+		draw(window, Color.WHITE);
+	}
+	
 	public void draw(Graphics window, Color col) {
 		window.setColor(col);
 		window.fillRect(getX(), getY(), getWidth(), getHeight());

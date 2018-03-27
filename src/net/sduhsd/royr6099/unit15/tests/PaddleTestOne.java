@@ -1,7 +1,9 @@
-package net.sduhsd.royr6099.unit15;
+package net.sduhsd.royr6099.unit15.tests;
 
 import static java.lang.System.*;
 import java.awt.Color;
+
+import net.sduhsd.royr6099.unit15.gameelements.Paddle;
 
 class PaddleTestOne
 {

@@ -1,4 +1,4 @@
-package net.sduhsd.royr6099.unit15;
+package net.sduhsd.royr6099.unit15.gameelements;
 
 public interface Locatable
 {

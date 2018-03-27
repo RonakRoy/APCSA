@@ -1,6 +1,8 @@
-package net.sduhsd.royr6099.unit15;
+package net.sduhsd.royr6099.unit15.tests;
 
 import java.awt.Color;
+
+import net.sduhsd.royr6099.unit15.gameelements.Block;
 
 class BlockTestOne
 {

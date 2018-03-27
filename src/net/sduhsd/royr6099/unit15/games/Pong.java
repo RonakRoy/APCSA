@@ -1,14 +1,19 @@
-package net.sduhsd.royr6099.unit15;
+package net.sduhsd.royr6099.unit15.games;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Canvas;
 import java.awt.event.KeyListener;
+
+import net.sduhsd.royr6099.unit15.gameelements.Ball;
+import net.sduhsd.royr6099.unit15.gameelements.Paddle;
+import net.sduhsd.royr6099.unit15.gameelements.Wall;
+
 import java.awt.event.KeyEvent;
 import static java.lang.Character.*;
 
 
-public class PaddleTestTwo extends Canvas implements KeyListener, Runnable {
+public class Pong extends Canvas implements KeyListener, Runnable {
 	private Ball ball;
 	private Paddle leftPaddle, rightPaddle;
 	private boolean[] keys; // keeps track of what keys are pressed
@@ -18,7 +23,7 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable {
 	private final int boardWidth = 600;
 	private final int boardHeight = 450;
 
-	public PaddleTestTwo() {
+	public Pong() {
 		// set up all game variables
 
 		// instantiate a Ball
@@ -34,7 +39,7 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable {
 		bottom = new Wall(10, boardHeight + 10, boardWidth, true);
 		
 		left = new Wall(0, 10, boardHeight, false);
-		right = new Wall(boardWidth, 10, boardHeight, false);
+		right = new Wall(10 + boardWidth, 10, boardHeight, false);
 
 		keys = new boolean[5];
 
@@ -79,17 +84,17 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable {
 		}
 
 		if (keys[0] == true) {
-			leftPaddle.moveDownAndDraw(window);
+			leftPaddle.moveUpAndDraw(window);
 		}
 		if (keys[1] == true) {
-			leftPaddle.moveUpAndDraw(window);
+			leftPaddle.moveDownAndDraw(window);
 		}
 		
 		if (keys[2] == true) {
-			rightPaddle.moveDownAndDraw(window);
+			rightPaddle.moveUpAndDraw(window);
 		}
 		if (keys[3] == true) {
-			rightPaddle.moveUpAndDraw(window);
+			rightPaddle.moveDownAndDraw(window);
 		}
 	}
 

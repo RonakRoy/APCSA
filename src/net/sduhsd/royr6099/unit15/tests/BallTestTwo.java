@@ -1,4 +1,4 @@
-package net.sduhsd.royr6099.unit15;
+package net.sduhsd.royr6099.unit15.tests;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -6,6 +6,8 @@ import java.awt.Graphics2D;
 import java.awt.Canvas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import net.sduhsd.royr6099.unit15.gameelements.Ball;
 
 class BallTestTwo extends Canvas implements Runnable {
 	private Ball ball;

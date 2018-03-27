@@ -1,4 +1,4 @@
-package net.sduhsd.royr6099.unit15;
+package net.sduhsd.royr6099.unit15.gameelements;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -16,9 +16,13 @@ public class Ball extends Block implements Collidable {
 	}
 	
 	public Ball(int x, int y, int w, int h) {
-		this(x, y, w, h, Color.BLACK);
+		this(x, y, w, h, 3, 1);
 	}
 
+	public Ball(int x, int y, int w, int h, int xSpd, int ySpd) {
+		this(x, y, w, h, Color.BLACK, xSpd, ySpd);
+	}
+	
 	public Ball(int x, int y, int w, int h, Color c) {
 		this(x, y, w, h, c, 3, 1);
 	}
@@ -108,8 +112,8 @@ public class Ball extends Block implements Collidable {
 		if (other == null) return false;
 		
 		return isInXRange(other) 
-				&& other.getY() > getY() + getHeight()
-				&& other.getY() + other.getHeight() <= getY();
+				&& other.getY() < getY() + getHeight()
+				&& other.getY() + other.getHeight() >= getY();
 	}
 
 	@Override
@@ -118,7 +122,7 @@ public class Ball extends Block implements Collidable {
 		if (other == null) return false;
 		
 		return isInXRange(other) 
-				&& other.getY() >= getY() + getHeight()
-				&& other.getY() + other.getHeight() < getY();
+				&& other.getY() < getY() + getHeight()
+				&& other.getY() + other.getHeight() >= getY();
 	}
 }

@@ -1,7 +1,10 @@
-package net.sduhsd.royr6099.unit15;
+package net.sduhsd.royr6099.unit15.tests;
 
 import java.awt.Color;
 import java.awt.Graphics;
+
+import net.sduhsd.royr6099.unit15.gameelements.Block;
+
 import java.awt.Canvas;
 
 public class BlockTestTwo extends Canvas
