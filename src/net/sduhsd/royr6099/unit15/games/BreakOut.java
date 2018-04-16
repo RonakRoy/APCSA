@@ -1,6 +1,7 @@
 package net.sduhsd.royr6099.unit15.games;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Canvas;
 import java.awt.event.KeyListener;
@@ -15,7 +16,6 @@ import net.sduhsd.royr6099.unit15.gameelements.Wall;
 import java.awt.event.KeyEvent;
 import static java.lang.Character.*;
 
-
 public class BreakOut extends Canvas implements KeyListener, Runnable {
 	private Ball ball;
 	private Paddle paddle;
@@ -27,37 +27,40 @@ public class BreakOut extends Canvas implements KeyListener, Runnable {
 	
 	private final int boardWidth = 600;
 	private final int boardHeight = 450;
+	
+	private List<Integer> toRemove;
 
+	private int score;
+	private final int numHoriz = 4;
+	private final int numVert = 5;
+	
 	public BreakOut() {
+		System.out.println("[BreakOut] Ronak Roy, P. 4, 04/04/18, CA-SU-F106-14");
+		
 		// set up all game variables
-
+		toRemove = new ArrayList<Integer>();
+		
 		// instantiate a Ball
-		ball = new Ball(boardWidth / 2, 400);
-		ball.setXSpeed(1);
-		ball.setYSpeed(2);
+		ball = new Ball();
 
 		// instantiate a Paddle
-		paddle = new Paddle(boardWidth / 2, boardHeight - 20, 70, 20, Color.RED, 5);
+		paddle = new Paddle(boardWidth - 20, boardHeight / 2, 20, 70, Color.RED, 5);
 		
+		// BUILD A WALL AND MAKE JAVA PAY FOR IT
 		top = new Wall(10, 0, boardWidth, true);
 		bottom = new Wall(10, boardHeight + 10, boardWidth, true);
 		
 		left = new Wall(0, 10, boardHeight, false);
 		right = new Wall(10 + boardWidth, 10, boardHeight, false);
 
-		keys = new boolean[2];
-		
+		// Make the list of blocks
 		breakoutBlocks = new ArrayList<Block>();
 		
-		int numHoriz = 9;
-		int numVert = 6;
+		keys = new boolean[2];
 		
-		for (int i = 0; i < numHoriz; i++) {
-			for (int j = 0; j < numVert; j++) {
-				breakoutBlocks.add(new Block((i + 1) * 56, (j + 1) * 48, 40, boardHeight / 2 / numVert));
-			}
-		}
-
+		// Setup the game for the first time in forever
+		reset();
+		
 		// set up the Canvas
 		setBackground(Color.WHITE);
 		setVisible(true);
@@ -65,12 +68,31 @@ public class BreakOut extends Canvas implements KeyListener, Runnable {
 		this.addKeyListener(this);
 		new Thread(this).start();
 	}
+	
+	public void reset() {
+		ball.setPos(boardWidth / 2, boardHeight - 80);
+		
+		ball.setXSpeed(3);
+		ball.setYSpeed(-1);
+		
+		breakoutBlocks.clear();
+		
+		for (int i = 0; i < numHoriz; i++) {
+			for (int j = 0; j < numVert; j++) {
+				breakoutBlocks.add(new Block(14 + 30*i, 14 + j * boardHeight / numVert, 20, boardHeight / numVert - 10));
+			}
+		}
+		
+		score = 0;
+	}
 
 	public void update(Graphics window) {
 		paint(window);
 	}
 
 	public void paint(Graphics window) {
+		window.setFont(new Font(Font.MONOSPACED, Font.BOLD, 30));
+		
 		for (Block b : breakoutBlocks) {
 			b.draw(window);
 		}
@@ -84,7 +106,13 @@ public class BreakOut extends Canvas implements KeyListener, Runnable {
 		left.draw(window);
 		right.draw(window);
 		
-		for (Block b : breakoutBlocks) {
+		toRemove.clear();
+		
+		window.setColor(Color.WHITE);
+		window.drawBytes(("Score: " + score).getBytes(), 0, ("Score: " + score).length(), boardWidth / 2, boardHeight - 10);
+				
+		for (int i = 0; i < breakoutBlocks.size(); i++) {
+			Block b = breakoutBlocks.get(i);
 			boolean kill = false;
 			
 			if (ball.didCollideLeft(b) || ball.didCollideRight(b)) {
@@ -97,13 +125,24 @@ public class BreakOut extends Canvas implements KeyListener, Runnable {
 			}
 			
 			if (kill) {
-				b.delete(window);
-				breakoutBlocks.remove(b);
+				toRemove.add(i);
+				score++;
 			}
 		}
+		
+		for (int r : toRemove) {
+			Block b = breakoutBlocks.get(r);
+			
+			b.delete(window);
+			breakoutBlocks.remove(b);
+		}
 
-		if (ball.didCollideLeft(left) || ball.didCollideRight(right)) {
+		if (ball.didCollideLeft(left)) {
 			ball.setXSpeed(-ball.getXSpeed());
+		}
+		else if (ball.didCollideRight(right)) {
+			ball.draw(window, Color.WHITE);
+			reset();
 		}
 		else if (ball.didCollideLeft(paddle) || ball.didCollideRight(paddle)) {
 			ball.setXSpeed(-ball.getXSpeed());
@@ -117,19 +156,22 @@ public class BreakOut extends Canvas implements KeyListener, Runnable {
 		}
 
 		if (keys[0] == true) {
-			paddle.moveRightAndDraw(window);
+			paddle.moveUpAndDraw(window);
 		}
 		if (keys[1] == true) {
-			paddle.moveLeftAndDraw(window);
+			paddle.moveDownAndDraw(window);
 		}
+		
+		window.setColor(Color.BLACK);
+		window.drawBytes(("Score: " + score).getBytes(), 0, ("Score: " + score).length(), boardWidth / 2, boardHeight - 10);
 	}
 
 	public void keyPressed(KeyEvent e) {
 		switch (toUpperCase(e.getKeyChar())) {
-		case 'D':
+		case 'W':
 			keys[0] = true;
 			break;
-		case 'A':
+		case 'S':
 			keys[1] = true;
 			break;
 		}
@@ -137,10 +179,10 @@ public class BreakOut extends Canvas implements KeyListener, Runnable {
 
 	public void keyReleased(KeyEvent e) {
 		switch (toUpperCase(e.getKeyChar())) {
-		case 'D':
+		case 'W':
 			keys[0] = false;
 			break;
-		case 'A':
+		case 'S':
 			keys[1] = false;
 			break;
 		}
