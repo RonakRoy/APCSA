@@ -485,6 +485,53 @@ public class Picture extends SimplePicture {
 			}
 		}
 	}
+	
+	public void sharpen(int x, int y, int w, int h) {
+		Pixel[][] pixels = this.getPixels2D();
+		
+		for (int row = y; row < y + h; row++) {
+			for (int col = x; col < x + w; col++) {
+				Pixel thisPix = pixels[row][col];
+				
+				int R = thisPix.getRed();
+				int G = thisPix.getGreen();
+				int B = thisPix.getBlue();
+				
+				if (row > 0 && row < pixels.length && col > 0 && col < pixels[0].length) {
+					Pixel left = pixels[row][col - 1];
+					Pixel above = pixels[row - 1][col];
+					
+					int leftR = left.getRed();
+					int leftG = left.getGreen();
+					int leftB = left.getBlue();
+					
+					int aboveR = above.getRed();
+					int aboveG = above.getGreen();
+					int aboveB = above.getBlue();
+					
+					int newRed = R + (R - leftR) / 2 + (R - aboveR) / 2;
+					newRed = clamp(newRed, 0, 255);
+					
+					int newGreen = G + (G - leftG) / 2 + (G - aboveG) / 2;
+					newGreen = clamp(newGreen, 0, 255);
+					
+					int newBlue = B + (B - leftB) / 2 + (B - aboveB) / 2;
+					newBlue = clamp(newBlue, 0, 255);
+					
+					thisPix.setRed(newRed);
+					thisPix.setGreen(newGreen);
+					thisPix.setBlue(newBlue);
+				}
+			}
+		}
+	}
+	
+	public int clamp(int n, int min, int max) {
+		if (n < min) return min;
+		if (n > max) return max;
+		
+		return n;
+	}
 
 	/*
 	 * Main method for testing - each class in Java can have a main method

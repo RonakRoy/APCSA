@@ -23,28 +23,28 @@ public class PictureTester {
 		caterpillar.mirrorVertical();
 		caterpillar.explore();
 	}
-	
+
 	public static void testMirrorVerticalRightToLeft() {
 		Picture caterpillar = new Picture("caterpillar.jpg");
 		caterpillar.explore();
 		caterpillar.mirrorVerticalRightToLeft();
 		caterpillar.explore();
 	}
-	
+
 	public static void testMirrorHorizontal() {
 		Picture motor = new Picture("redMotorcycle.jpg");
 		motor.explore();
 		motor.mirrorHorizotal();
 		motor.explore();
 	}
-	
+
 	public static void testMirrorHorizontalBotToTop() {
 		Picture motor = new Picture("redMotorcycle.jpg");
 		motor.explore();
 		motor.mirrorHorizotalBotToTop();
 		motor.explore();
 	}
-	
+
 	public static void testMirrorDiagonal() {
 		Picture motor = new Picture("beach.jpg");
 		motor.explore();
@@ -59,14 +59,14 @@ public class PictureTester {
 		temple.mirrorTemple();
 		temple.explore();
 	}
-	
+
 	public static void testMirrorArms() {
 		Picture snowman = new Picture("snowman.jpg");
 		snowman.explore();
 		snowman.mirrorArms();
 		snowman.explore();
 	}
-	
+
 	public static void testMirrorGull() {
 		Picture gull = new Picture("seagull.jpg");
 		gull.explore();
@@ -80,17 +80,17 @@ public class PictureTester {
 		canvas.createCollage();
 		canvas.explore();
 	}
-	
+
 	public static void testMyCollage() {
 		Picture canvas = new Picture("640x480.jpg");
 		canvas.myCollage();
 		canvas.explore();
 	}
-	
+
 	public static void testCopy() {
 		Picture canvas = new Picture("640x480.jpg");
 		Picture gull = new Picture("seagull.jpg");
-		
+
 		canvas.copy(gull, 200, 250, 230, 230, 330, 350);
 		canvas.explore();
 	}
@@ -99,15 +99,14 @@ public class PictureTester {
 	public static void testEdgeDetection() {
 		Picture swan = new Picture("swan.jpg");
 		swan.explore();
-		
+
 		swan.edgeDetection(10);
 		swan.explore();
-		
+
 		swan = new Picture("swan.jpg");
 		swan.myEdgeDetection(60, 3);
 		swan.explore();
 	}
-	
 
 	public static void testKeepOnlyBlue() {
 		Picture beach = new Picture("beach.jpg");
@@ -115,26 +114,33 @@ public class PictureTester {
 		beach.keepOnlyBlue();
 		beach.explore();
 	}
-	
+
 	public static void testNegate() {
 		Picture beach = new Picture("beach.jpg");
 		beach.explore();
 		beach.negate();
 		beach.explore();
 	}
-	
+
 	public static void testGrayscale() {
 		Picture beach = new Picture("beach.jpg");
 		beach.explore();
 		beach.grayscale();
 		beach.explore();
 	}
-	
+
 	public static void testFixUnderwater() {
 		Picture water = new Picture("water.jpg");
 		water.explore();
 		water.fixUnderwater();
 		water.explore();
+	}
+
+	public static void testSharpen(int x, int y, int w, int h) {
+		Picture redMoto = new Picture("redMotorcycle.jpg");
+		redMoto.explore();
+		redMoto.sharpen(x, y, w, h);
+		redMoto.explore();
 	}
 
 	/**
@@ -162,7 +168,8 @@ public class PictureTester {
 		// testCollage();
 		// testMyCollage();
 		// testCopy();
-		 testEdgeDetection();
+		// testEdgeDetection();
+		testSharpen(50, 50, 500, 400);
 		// testChromakey();
 		// testEncodeAndDecode();
 		// testGetCountRedOverValue(250);
