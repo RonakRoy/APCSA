@@ -23,6 +23,34 @@ public class PictureTester {
 		caterpillar.mirrorVertical();
 		caterpillar.explore();
 	}
+	
+	public static void testMirrorVerticalRightToLeft() {
+		Picture caterpillar = new Picture("caterpillar.jpg");
+		caterpillar.explore();
+		caterpillar.mirrorVerticalRightToLeft();
+		caterpillar.explore();
+	}
+	
+	public static void testMirrorHorizontal() {
+		Picture motor = new Picture("redMotorcycle.jpg");
+		motor.explore();
+		motor.mirrorHorizotal();
+		motor.explore();
+	}
+	
+	public static void testMirrorHorizontalBotToTop() {
+		Picture motor = new Picture("redMotorcycle.jpg");
+		motor.explore();
+		motor.mirrorHorizotalBotToTop();
+		motor.explore();
+	}
+	
+	public static void testMirrorDiagonal() {
+		Picture motor = new Picture("beach.jpg");
+		motor.explore();
+		motor.mirrorDiagonal();
+		motor.explore();
+	}
 
 	/** Method to test mirrorTemple */
 	public static void testMirrorTemple() {
@@ -31,6 +59,20 @@ public class PictureTester {
 		temple.mirrorTemple();
 		temple.explore();
 	}
+	
+	public static void testMirrorArms() {
+		Picture snowman = new Picture("snowman.jpg");
+		snowman.explore();
+		snowman.mirrorArms();
+		snowman.explore();
+	}
+	
+	public static void testMirrorGull() {
+		Picture gull = new Picture("seagull.jpg");
+		gull.explore();
+		gull.mirrorGull();
+		gull.explore();
+	}
 
 	/** Method to test the collage method */
 	public static void testCollage() {
@@ -38,13 +80,34 @@ public class PictureTester {
 		canvas.createCollage();
 		canvas.explore();
 	}
+	
+	public static void testMyCollage() {
+		Picture canvas = new Picture("640x480.jpg");
+		canvas.myCollage();
+		canvas.explore();
+	}
+	
+	public static void testCopy() {
+		Picture canvas = new Picture("640x480.jpg");
+		Picture gull = new Picture("seagull.jpg");
+		
+		canvas.copy(gull, 200, 250, 230, 230, 330, 350);
+		canvas.explore();
+	}
 
 	/** Method to test edgeDetection */
 	public static void testEdgeDetection() {
 		Picture swan = new Picture("swan.jpg");
+		swan.explore();
+		
 		swan.edgeDetection(10);
 		swan.explore();
+		
+		swan = new Picture("swan.jpg");
+		swan.myEdgeDetection(60, 3);
+		swan.explore();
 	}
+	
 
 	public static void testKeepOnlyBlue() {
 		Picture beach = new Picture("beach.jpg");
@@ -87,16 +150,19 @@ public class PictureTester {
 		// testKeepOnlyGreen();
 		// testNegate();
 		// testGrayscale();
-		 testFixUnderwater();
+		// testFixUnderwater();
 		// testMirrorVertical();
+		// testMirrorVerticalRightToLeft();
+		// testMirrorHorizontal();
+		// testMirrorHorizontalBotToTop();
 		// testMirrorTemple();
 		// testMirrorArms();
 		// testMirrorGull();
 		// testMirrorDiagonal();
 		// testCollage();
+		// testMyCollage();
 		// testCopy();
-		// testEdgeDetection();
-		// testEdgeDetection2();
+		 testEdgeDetection();
 		// testChromakey();
 		// testEncodeAndDecode();
 		// testGetCountRedOverValue(250);
